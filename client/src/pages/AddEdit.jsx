@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 
 const initialState = {
   id: "",
-  name: "",
+  firstName: "",
+  lastName: "",
   phone: "",
   ipAddress: "",
 };
@@ -14,7 +15,7 @@ const initialState = {
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
 
-  const { name, phone, ipAddress } = state;
+  const { firstName, lastName, phone, ipAddress } = state;
 
   const navigate = useNavigate();
 
@@ -49,10 +50,8 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !phone || !ipAddress) {
-      toast.error(
-        "Please provide value into name & id input field they are mandatory"
-      );
+    if (!firstName || !lastName || !phone || !ipAddress) {
+      toast.error("Please provide values all fields are mandatory");
     } else {
       if (!id) {
         addUser(state);
@@ -80,14 +79,23 @@ const AddEdit = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">First Name</label>
         <input
           type="text"
-          id="name"
-          name="name"
-          placeholder="Enter Name..."
+          id="firstName"
+          name="firstName"
+          placeholder="Enter First Name..."
           onChange={handleInputChange}
-          value={name}
+          value={firstName}
+        />
+        <label htmlFor="name">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Enter Last Name..."
+          onChange={handleInputChange}
+          value={lastName}
         />
         <label htmlFor="phone">Phone</label>
         <input

@@ -32,8 +32,12 @@ const View = () => {
           <span>{id}</span>
           <br />
           <br />
-          <strong>Name:</strong>
-          <span>{user && user.name}</span>
+          <strong>First Name:</strong>
+          <span>{user && user.firstName}</span>
+          <br />
+          <br />
+          <strong>Last Name:</strong>
+          <span>{user && user.lastName}</span>
           <br />
           <br />
           <strong>Phone:</strong>
@@ -44,8 +48,8 @@ const View = () => {
           <span>{user && user.ipAddress}</span>
           <br />
           <br />
-          <Link to={'/'}>
-              <button className="btn btn-edit">Go Back</button>
+          <Link to={"/"}>
+            <button className="btn btn-edit">Go Back</button>
           </Link>
         </div>
       </div>
