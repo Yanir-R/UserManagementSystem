@@ -15,9 +15,9 @@ const View = () => {
   }, [id]);
 
   const getSingleUser = async (id) => {
-    const response = await axios.get(`http://localhost:3001/user/${id}`);
+    const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
     if (response.status === 200) {
-      setUser({ ...response.data[0] });
+      setUser({ ...response.data });
     }
   };
 
@@ -29,23 +29,19 @@ const View = () => {
         </div>
         <div className="container">
           <strong>ID:</strong>
-          <span>{id}</span>
+         <span>{user && user.ID}</span>
           <br />
           <br />
-          <strong>First Name:</strong>
-          <span>{user && user.firstName}</span>
-          <br />
-          <br />
-          <strong>Last Name:</strong>
-          <span>{user && user.lastName}</span>
+          <strong>Name:</strong>
+          <span>{user && user.Name}</span>
           <br />
           <br />
           <strong>Phone:</strong>
-          <span>{user && user.phone}</span>
+          <span>{user && user.Phone}</span>
           <br />
           <br />
           <strong>IP Address:</strong>
-          <span>{user && user.ipAddress}</span>
+          <span>{user && user.IP}</span>
           <br />
           <br />
           <Link to={"/"}>

@@ -13,7 +13,7 @@ const Home = () => {
   }, []);
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:3001/users");
+    const response = await axios.get("http://127.0.0.1:3001/api/users");
     if (response.status === 200) {
       setData(response.data);
       //   console.log("data=>", response)
@@ -22,7 +22,7 @@ const Home = () => {
 
   const onDeleteUser = async (id) => {
     if (window.confirm("Are you sure you want to delete that user?")) {
-      const response = await axios.delete(`http://localhost:3001/user/${id}`);
+      const response = await axios.delete(`http://127.0.0.1:3001/api/user/${id}`);
       if (response.status === 200) {
         toast.success(response.data);
         getUsers();
@@ -30,8 +30,12 @@ const Home = () => {
     }
   };
 
-  const searchUsers = (rows) =>{
-    return rows.filter(row =>row.firstName.toLowerCase().indexOf(q.toLowerCase())> -1)
+ const searchUsers = (rows) =>{
+    return rows.filter((rows) =>{
+        let splitted = rows.Name.toLowerCase().split(" ");
+        let searchable = splitted.length > 1 ? splitted[1] : '';
+        return searchable.indexOf(q.toString().toLowerCase())> -1
+    })
   }
 
   return (

@@ -5,44 +5,50 @@ import "./AddEdit.css";
 import { toast } from "react-toastify";
 
 const initialState = {
-  id: "",
-  firstName: "",
-  lastName: "",
-  phone: "",
-  ipAddress: "",
+  ID: "",
+  Name: "",
+  IP: "",
+  Phone: "",
 };
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
 
-  const { firstName, lastName, phone, ipAddress } = state;
+  const { ID, Name, IP, Phone } = state;
+  console.log(state)
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) {
-      getSingleUser(id);
-    }
+     if (id) {
+    getSingleUser(id);
+  }
   }, [id]);
 
   const getSingleUser = async (id) => {
-    const response = await axios.get(`http://localhost:3001/user/${id}`);
+    const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
     if (response.status === 200) {
-      setState({ ...response.data[0] });
+      setState({ ...response.data });
     }
   };
+ 
 
   const addUser = async (data) => {
-    const response = await axios.post("http://localhost:3001/user", data);
+    const response = await axios.post("http://127.0.0.1:3001/api/users", data);
     if (response.status === 200) {
       toast.success(response.data);
     }
   };
 
   const updateUser = async (data, id) => {
-    const response = await axios.put(`http://localhost:3001/user/${id}`, data);
+    console.log(id)
+    const response = await axios.put(
+
+      `http://127.0.0.1:3001/api/user/${id}`,
+      data
+    );
     if (response.status === 200) {
       toast.success(response.data);
     }
@@ -50,7 +56,7 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!firstName || !lastName || !phone || !ipAddress) {
+    if (!ID || !Name || !IP || !Phone) {
       toast.error("Please provide values all fields are mandatory");
     } else {
       if (!id) {
@@ -64,6 +70,7 @@ const AddEdit = () => {
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
+    console.log(name, value)
     setState({ ...state, [name]: value });
   };
 
@@ -79,40 +86,40 @@ const AddEdit = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <label htmlFor="name">First Name</label>
+        <label htmlFor="name">Name</label>
         <input
-          type="text"
-          id="firstName"
-          name="firstName"
+          type="string"
+          id="Name"
+          name="Name"
           placeholder="Enter First Name..."
           onChange={handleInputChange}
-          value={firstName}
+          value={Name}
         />
-        <label htmlFor="name">Last Name</label>
+        <label htmlFor="name">ID</label>
         <input
-          type="text"
-          id="lastName"
-          name="lastName"
+          type="string"
+          id="ID"
+          name="ID"
           placeholder="Enter Last Name..."
           onChange={handleInputChange}
-          value={lastName}
+          value={ID}
         />
-        <label htmlFor="phone">Phone</label>
+        <label htmlFor="phone">IP Address</label>
         <input
-          type="number"
-          id="phone"
-          name="phone"
-          placeholder="Enter phone..."
+          type="string"
+          id="IP"
+          name="IP"
+          placeholder="Enter IP Address..."
           onChange={handleInputChange}
-          value={phone}
+          value={IP}
         />
-        <label htmlFor="ipAddress">ip Address</label>
+        <label htmlFor="ipAddress">Phone</label>
         <input
-          type="number"
-          id="ipAddress"
-          name="ipAddress"
+          type="string"
+          id="Phone"
+          name="Phone"
           placeholder="Enter Ip Address..."
-          value={ipAddress}
+          value={Phone}
           onChange={handleInputChange}
         />
 

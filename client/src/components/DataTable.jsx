@@ -8,9 +8,8 @@ const DataTable = ({ data, onDeleteUser }) => {
         <thead>
           <tr>
             <th style={{ textAlign: "center" }}>ID</th>
-            <th style={{ textAlign: "center" }}>First Name</th>
-            <th style={{ textAlign: "center" }}>Last Name</th>
-            <th style={{ textAlign: "center" }}>phone</th>
+            <th style={{ textAlign: "center" }}>Name</th>
+            <th style={{ textAlign: "center" }}>Phone</th>
             <th style={{ textAlign: "center" }}>IP Address</th>
             <th style={{ textAlign: "center" }}>Action</th>
           </tr>
@@ -26,21 +25,20 @@ const DataTable = ({ data, onDeleteUser }) => {
             {data.map((item, row) => (
               <tr key={row}>
                 <>
-                  <td>{item.id}</td>
-                  <td>{item.firstName}</td>
-                  <td>{item.lastName}</td>
-                  <td>{item.phone}</td>
-                  <td>{item.ipAddress}</td>
+                  <td>{item.ID}</td>
+                  <td>{item.Name}</td>
+                  <td>{item.IP}</td>
+                  <td>{item.Phone}</td>
                   <td>
-                    <Link to={`/update/${item.id}`}>
+                    <Link to={`/update/${item._id}`}>
                       <button className="btn btn-edit">Edit</button>
                     </Link>
-                    <Link to={`/view/${item.id}`}>
+                    <Link to={`/view/${item._id}`}>
                       <button className="btn btn-view">View</button>
                     </Link>
                     <button
                       className="btn btn-delete"
-                      onClick={() => onDeleteUser(item.id)}
+                      onClick={() => onDeleteUser(item._id)}
                     >
                       Delete
                     </button>
