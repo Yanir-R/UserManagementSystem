@@ -16,5 +16,16 @@
 <code> npm start </code>
 ######  build and serves the client side, will also restart the service on file changes
 
-## License
-MIT © [Yanir-r]()
+## Technologies
+
+<p align="flex"> 
+<img src="https://img.icons8.com/nolan/64/react-native.png" alt="reactjs"/>
+<img src="https://img.icons8.com/nolan/64/html-5.png"  alt="html"/>
+<img src="https://img.icons8.com/nolan/64/css-filetype.png" alt="css"/>
+<img src="https://img.icons8.com/nolan/64/js.png" alt="javascript"/>
+<img src="https://img.icons8.com/color/48/000000/mongodb.png" alt="mongodb"/>
+<img src="https://img.icons8.com/color/48/000000/nodejs.png" alt="nodejs"/>
+</p>
+
+
+## License MIT © [Yanir-r]()
