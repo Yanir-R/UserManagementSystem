@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./DataTable.css";
 const DataTable = ({ data, onDeleteUser }) => {
+
   return (
     <div style={{ marginTop: " 100px" }}>
       <table className="styled-table">
         <thead>
           <tr>
+            <th style={{ textAlign: "center" }}>No.</th>
             <th style={{ textAlign: "center" }}>ID</th>
             <th style={{ textAlign: "center" }}>Name</th>
             <th style={{ textAlign: "center" }}>Phone</th>
@@ -25,10 +27,11 @@ const DataTable = ({ data, onDeleteUser }) => {
             {data.map((item, row) => (
               <tr key={row}>
                 <>
+                  <td>{row + 1}</td>
                   <td>{item.ID}</td>
                   <td>{item.Name}</td>
-                  <td>{item.IP}</td>
                   <td>{item.Phone}</td>
+                  <td>{item.IP}</td>
                   <td>
                     <Link to={`/update/${item._id}`}>
                       <button className="btn btn-edit">Edit</button>

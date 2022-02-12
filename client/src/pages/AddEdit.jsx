@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
@@ -15,16 +15,15 @@ const AddEdit = () => {
   const [state, setState] = useState(initialState);
 
   const { ID, Name, IP, Phone } = state;
-  console.log(state)
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
-     if (id) {
-    getSingleUser(id);
-  }
+    if (id) {
+      getSingleUser(id);
+    }
   }, [id]);
 
   const getSingleUser = async (id) => {
@@ -33,7 +32,6 @@ const AddEdit = () => {
       setState({ ...response.data });
     }
   };
- 
 
   const addUser = async (data) => {
     const response = await axios.post("http://127.0.0.1:3001/api/users", data);
@@ -43,9 +41,7 @@ const AddEdit = () => {
   };
 
   const updateUser = async (data, id) => {
-    console.log(id)
     const response = await axios.put(
-
       `http://127.0.0.1:3001/api/user/${id}`,
       data
     );
@@ -70,7 +66,6 @@ const AddEdit = () => {
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
-    console.log(name, value)
     setState({ ...state, [name]: value });
   };
 
@@ -86,25 +81,37 @@ const AddEdit = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <label htmlFor="name">Name</label>
+        <abbr title="Fill Your First & Last Name" aria-label="required">
+          *
+        </abbr>
+        <label htmlFor="Name">Full Name </label>
         <input
-          type="string"
+          type="text"
           id="Name"
           name="Name"
-          placeholder="Enter First Name..."
+          placeholder="Enter Your Full Name..."
           onChange={handleInputChange}
           value={Name}
+          pattern="^[a-zA-Z]{3,}(?: [a-zA-Z]+){0,2}$"
+          title="First Name minimum 3 letters required, Last name minimum 2 letters required"
         />
-        <label htmlFor="name">ID</label>
+        <label htmlFor="ID">ID</label>
         <input
           type="string"
           id="ID"
           name="ID"
-          placeholder="Enter Last Name..."
+          placeholder="Enter ID Number..."
           onChange={handleInputChange}
+          minLength="9"
+          maxLength="9"
           value={ID}
+          pattern="[0-9]+"
+          title="fill your ID number with 9 numbers, no letters allowed"
         />
-        <label htmlFor="phone">IP Address</label>
+        <abbr title="example 1.1.1.1 of IP " aria-label="required">
+          *
+        </abbr>
+        <label htmlFor="IP">IP Address</label>
         <input
           type="string"
           id="IP"
@@ -112,18 +119,27 @@ const AddEdit = () => {
           placeholder="Enter IP Address..."
           onChange={handleInputChange}
           value={IP}
+          pattern="^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$"
+          maxLength="16"
+          title="example 1.1.1.1 of IP"
         />
-        <label htmlFor="ipAddress">Phone</label>
+        <label htmlFor="Phone">Phone</label>
         <input
           type="string"
           id="Phone"
           name="Phone"
-          placeholder="Enter Ip Address..."
+          placeholder="Enter Phone Number..."
           value={Phone}
           onChange={handleInputChange}
+          minLength="10"
+          maxLength="14"
+          pattern="[0-9]+"
         />
 
         <input type="submit" value={id ? "Update" : "Add"} />
+        <Link to={"/"}>
+          <button className="btn btn-delete">Cancel</button>
+        </Link>
       </form>
     </div>
   );

@@ -5,12 +5,12 @@ import "./Header.css";
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const location = useLocation();
-  
+
   useEffect(() => {
     if (location.pathname === "/") {
       setActiveTab("Home");
     } else if (location.pathname === "/add") {
-      setActiveTab("AddUser");
+      setActiveTab("addUser");
     } else if (location.pathname === "/about") {
       setActiveTab("About");
     }
@@ -30,8 +30,8 @@ const Header = () => {
         </Link>
         <Link to={"/add"}>
           <p
-            className={`${activeTab === "AddUser" ? "active" : ""}`}
-            onClick={() => setActiveTab("AddUser")}
+            className={`${activeTab === "addUser" ? "active" : ""}`}
+            onClick={() => setActiveTab("addUser")}
           >
             Add User
           </p>

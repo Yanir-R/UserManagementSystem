@@ -1,23 +1,24 @@
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
+  
 }
 
 .header p {
   float: left;
   color: black;
   text-align: center;
-  padding: 10px;
+  padding: 12px;
   text-decoration: none;
-  font-size: 18px;
-  line-height: 15px;
+  font-size: 18px; 
+  line-height: 25px;
   border-radius: 4px;
 }
 
 .header p.logo {
   font-size: 25px;
   font-weight: bold;
-  color: #5c5239;
+  color: #14946e;
 }
 
 .header p:hover {
@@ -26,7 +27,7 @@
 }
 
 .header p.active {
-  background-color: #917c46;
+  background-color: #327f87;
   color: white;
 }
 
@@ -34,13 +35,17 @@
   float: right;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .header p {
     float: none;
     display: block;
     text-align: left;
+    width: 100%;
   }
   .header-right {
     float: none;
+    
   }
 }
+
+

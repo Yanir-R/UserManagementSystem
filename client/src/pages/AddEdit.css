@@ -1,5 +1,6 @@
-input[type="text"],
 input[type="number"],
+input[type="text"],
+input[type="string"],
 select {
   width: 100%;
   padding: 12px 20px;
@@ -25,4 +26,3 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #45a049;
 }
-

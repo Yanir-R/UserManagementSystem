@@ -7,15 +7,15 @@ const usersSchema = new mongoose.Schema({
     }, 
     ID: {
         type: String,
-        required: false
+        required: true
     },
     IP: {
         type: String,
-        required: false
+        required: true
     },
     Phone : {
         type: String,
-        required: false
+        required: true
     }
 }, {
     timestamps: true
