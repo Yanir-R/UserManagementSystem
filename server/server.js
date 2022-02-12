@@ -9,7 +9,9 @@ const app = fastify({
 });
 
 app.register(db);
-
+app.register(require('fastify-cors'), { 
+  origin: true
+})
 routes.forEach((route, index) => {
   app.route(route);
 });
