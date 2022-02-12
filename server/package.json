@@ -4,12 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "preload": "cross-env PRELOAD_DATA=true nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "boom": "^7.3.0",
+    "cross-env": "^7.0.3",
     "fastify": "^3.27.1",
     "fastify-cors": "^6.0.2",
     "fastify-mongodb": "^4.1.1",

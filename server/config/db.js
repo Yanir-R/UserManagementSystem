@@ -14,5 +14,12 @@ async function dbConnector(fastify, options) {
     } catch (err) {
         console.log(err)
     }
+async function writeData (data, msgData ){
+    db.collection('usersSiteList').insert(data, (error, record)=>{
+        if (error) {throw error}
+        console.log('data saved successfully')
+    })
+
+}
 }
 module.exports = fastifyPlugin(dbConnector)
