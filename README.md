@@ -5,7 +5,7 @@
 <code> git clone https://github.com/Yanir-R/UserManagementSystem.git </code>
 #### Install dependencies :
 <code> npm i </code>
-###### Install npm i inside client & server file
+###### Install npm i inside client & server folders
 #### Run the Server With Data:
 <code> npm run preload </code>
 ###### Run ONLY for load the data
