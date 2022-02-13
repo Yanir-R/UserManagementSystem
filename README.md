@@ -8,10 +8,10 @@
 ###### Install npm i inside client & server file
 #### Run the Server With Data:
 <code> npm run preload </code>
-###### Run ONLY for load the data, after loading the data, stop the compiler & run <code>npm run dev</code>
+###### Run ONLY for load the data
 #### Run the Server:
 <code> npm run dev  </code>
-###### If you already loaded the data, you dont have to run the first command each time, you can use this command
+###### If you already loaded the data, you can use this command for development enviroment
 ###### [nodemon](https://www.npmjs.com/package/nodemon) a wapper for node, will restart the server on file changes
 #### Run The Client:
 <code> npm start </code>
