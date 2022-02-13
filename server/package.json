@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "preload": "cross-env PRELOAD_DATA=true nodemon server.js"
+    "preload": "cross-env PRELOAD_DATA=true node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "moment": "^2.29.1",
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.2",
+    "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15"
   }
 }

@@ -9,9 +9,9 @@ const app = fastify({
 });
 
 app.register(db);
-app.register(require('fastify-cors'), { 
-  origin: true
-})
+app.register(require("fastify-cors"), {
+  origin: true,
+});
 routes.forEach((route, index) => {
   app.route(route);
 });
@@ -26,17 +26,18 @@ const start = async () => {
 
       let data = fileSystem.readFileSync("./data/users.json", "utf8");
       let documents = JSON.parse(data);
-
-      try {
-        Users.insertMany(documents);
-      } catch (err) {
-        console.log(err);
+      const dataExist = await Users.findOne();
+      if (!dataExist) {
+        try {
+          Users.insertMany(documents);
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
   } catch (err) {
     app.log.error(err);
     process.exit(1);
   }
-
 };
 start();

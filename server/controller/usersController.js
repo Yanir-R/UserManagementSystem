@@ -1,10 +1,10 @@
 const boom = require("boom");
 const Users = require("../model/Users");
-
+const fetch = require("node-fetch");
 exports.getAllUsers = async (req, reply) => {
   try {
-    alerts = await Users.find();
-    return alerts;
+    results = await Users.find();
+    return results;
   } catch (err) {
     throw boom.boomify(err);
   }
@@ -41,7 +41,7 @@ exports.addNewUser = async (req, reply) => {
 exports.deleteUser = async (req, reply) => {
   try {
     const id = req.params.id;
-    let result = await Users.findByIdAndDelete(id);
+    await Users.findByIdAndDelete(id);
     return { Message: `${id} deleted` };
   } catch (err) {
     throw boom.boomify(err);
