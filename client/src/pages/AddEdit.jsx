@@ -23,6 +23,8 @@ const AddEdit = () => {
   useEffect(() => {
     if (id) {
       getSingleUser(id);
+    } else {
+      setState(initialState);
     }
   }, [id]);
 
