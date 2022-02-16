@@ -9,13 +9,19 @@ const View = () => {
   const [ipDetails, setIpDetails] = useState([]);
 
   const { id } = useParams();
-  let userIP = user?.IP;
+  const userIP = user?.IP;
+
   useEffect(() => {
     if (id) {
       getSingleUser(id);
-      getIpDetailsOfUser();
     }
-  }, [id, userIP]);
+  }, [id]);
+
+  useEffect(() => {
+    if (userIP) {
+      getIpDetailsOfUser(userIP);
+    }
+  }, [userIP]);
 
   const getSingleUser = async (id) => {
     const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
@@ -54,7 +60,11 @@ const View = () => {
           <br />
           <strong>IP Address: </strong>
           <span>{user?.IP}</span>
-          <ViewIpdetails country={ipDetails.country} city={ipDetails.city} timezone={ipDetails.timezone} />
+          <ViewIpdetails
+            country={ipDetails.country}
+            city={ipDetails.city}
+            timezone={ipDetails.timezone}
+          />
           <br />
           <br />
           <Link to={"/"}>
