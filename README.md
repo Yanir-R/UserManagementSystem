@@ -41,7 +41,7 @@ You can see more info that base on the user IP address that I pulled from [ip-ap
 - The edit button will let you edit the specific user you choose
 
 ## Motivation
-I created the project to test my abilities With API, React & Bootstrap.
+I created the project to test my abilities with NodeJS & mongoDB.
 
 
 ## Technologies
