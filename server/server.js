@@ -4,6 +4,7 @@ const PRELOAD = process.env.PRELOAD_DATA || false;
 const db = require("./config/db");
 const fileSystem = require("fs");
 const routes = require("./routes/collectionRoutes");
+const Users = require("./model/Users");
 const app = fastify({
   logger: true,
 });
@@ -22,8 +23,6 @@ const start = async () => {
     app.log.info(`server listening on ${app.server.address().port}`);
 
     if (PRELOAD) {
-      const Users = require("./model/Users");
-
       let data = fileSystem.readFileSync("./data/users.json", "utf8");
       let documents = JSON.parse(data);
       const dataExist = await Users.findOne();

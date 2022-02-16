@@ -26,5 +26,10 @@ const routes = [
     url: "/api/user/:id",
     handler: usersController.deleteUser,
   },
+  {
+    method: "GET",
+    url: "/api/userip/:ip",
+    handler: usersController.webIpData,
+  },
 ];
 module.exports = routes;

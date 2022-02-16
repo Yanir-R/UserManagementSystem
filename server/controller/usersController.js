@@ -47,3 +47,14 @@ exports.deleteUser = async (req, reply) => {
     throw boom.boomify(err);
   }
 };
+
+exports.webIpData = async (req, reply) => {
+  try {
+    const ip = req.params.ip;
+    const res = await fetch(`http://ip-api.com/json/${ip}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
