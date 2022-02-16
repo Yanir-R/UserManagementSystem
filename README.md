@@ -3,7 +3,7 @@
 ## Get Started
  #### Clone the repo:
 <code> git clone https://github.com/Yanir-R/UserManagementSystem.git </code>
-#### Install dependencies :
+#### Install dependencies:
 <code> npm i </code>
 ###### Install npm i inside client & server folders
 #### Run the Server With Data:
