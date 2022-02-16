@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./View.css";
-import ViewIpdetails from "../components/ViewIpDetails";
+import { ViewIpdetails } from "../components/ViewIpDetails";
 
 const View = () => {
   const [user, setUser] = useState(null);
@@ -76,4 +76,4 @@ const View = () => {
   );
 };
 
-export default View;
+export { View };

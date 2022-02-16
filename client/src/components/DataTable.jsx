@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./DataTable.css";
 const DataTable = ({ data, onDeleteUser }) => {
-
   return (
     <div style={{ marginTop: " 100px" }}>
       <table className="styled-table">
@@ -56,4 +55,4 @@ const DataTable = ({ data, onDeleteUser }) => {
   );
 };
 
-export default DataTable;
+export { DataTable };

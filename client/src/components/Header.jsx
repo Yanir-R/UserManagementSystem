@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <div className="header">
-      <p className="logo">Humanz</p>
+      <p className="logo">Management System</p>
       <div className="header-right">
         <Link to={"/"}>
           <p
@@ -49,4 +49,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export { Header };

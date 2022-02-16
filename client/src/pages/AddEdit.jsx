@@ -3,7 +3,6 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
-import ViewIpdetails from "../components/ViewIpDetails";
 
 const initialState = {
   ID: "",
@@ -113,7 +112,6 @@ const AddEdit = () => {
         <abbr title="example 1.1.1.1 of IP " aria-label="required">
           *
         </abbr>
-        <ViewIpdetails />
         <label htmlFor="IP">IP Address</label>
         <input
           type="string"
@@ -148,4 +146,4 @@ const AddEdit = () => {
   );
 };
 
-export default AddEdit;
+export { AddEdit };

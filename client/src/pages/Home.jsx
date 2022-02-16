@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import DataTable from "../components/DataTable";
+import { DataTable } from "../components/DataTable";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <>
-      <div style={{ display: "inline-block" }}>
+      <div style={{ display: "grid", justifyContent: "center" }}>
         <input
           type="text"
           name="search"
@@ -55,4 +55,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export { Home };

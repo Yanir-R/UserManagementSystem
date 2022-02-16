@@ -1,16 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
-import Home from "./pages/Home";
-import AddEdit from "./pages/AddEdit";
-import View from "./pages/View";
-import About from "./pages/About";
-import Header from "./components/Header";
+import { Home } from "./pages/Home";
+import { AddEdit } from "./pages/AddEdit";
+import { View } from "./pages/View";
+import { About } from "./pages/About";
+import { Header } from "./components/Header";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Router>
         <Header />
         <ToastContainer position="top-center" />
@@ -26,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export { App };
