@@ -28,7 +28,7 @@ You can see more info that base on the user IP address that I pulled from [ip-ap
 - [X] Search based on surname
 - [X] Get more info that based on IP that you filled, from [ip-api](https://ip-api.com/) 
 - [X] Validations on add\edit user form
-- [X] Simple Server Validtions
+- [X] Simple Server validations
 - [X] Responsive Design
 
 ## Instructions
