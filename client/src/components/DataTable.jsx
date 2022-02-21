@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./DataTable.css";
-const DataTable = ({ data, onDeleteUser }) => {
+const DataTable = ({ data: users, onDeleteUser }) => {
   return (
     <div style={{ marginTop: " 100px" }}>
       <table className="styled-table">
@@ -15,7 +15,7 @@ const DataTable = ({ data, onDeleteUser }) => {
             <th style={{ textAlign: "center" }}>Action</th>
           </tr>
         </thead>
-        {data.length === 0 ? (
+        {users.length === 0 ? (
           <tbody>
             <tr>
               <td>No Data Found</td>
@@ -23,24 +23,24 @@ const DataTable = ({ data, onDeleteUser }) => {
           </tbody>
         ) : (
           <tbody>
-            {data.map((item, row) => (
+            {users.map((user, row) => (
               <tr key={row}>
                 <>
                   <td>{row + 1}</td>
-                  <td>{item.ID}</td>
-                  <td>{item.Name}</td>
-                  <td>{item.Phone}</td>
-                  <td>{item.IP}</td>
+                  <td>{user.ID}</td>
+                  <td>{user.Name}</td>
+                  <td>{user.Phone}</td>
+                  <td>{user.IP}</td>
                   <td>
-                    <Link to={`/update/${item._id}`}>
+                    <Link to={`/update/${user._id}`}>
                       <button className="btn btn-edit">Edit</button>
                     </Link>
-                    <Link to={`/view/${item._id}`}>
+                    <Link to={`/view/${user._id}`}>
                       <button className="btn btn-view">View</button>
                     </Link>
                     <button
                       className="btn btn-delete"
-                      onClick={() => onDeleteUser(item._id)}
+                      onClick={() => onDeleteUser(user._id)}
                     >
                       Delete
                     </button>

@@ -4,17 +4,17 @@ import { toast } from "react-toastify";
 import { DataTable } from "../components/DataTable";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [users, setUsers] = useState([]);
   const [q, setQ] = useState("");
 
   useEffect(() => {
-    getUsers(setData);
+    getUsers(setUsers);
   }, []);
 
   const getUsers = async () => {
     const response = await axios.get("http://127.0.0.1:3001/api/users");
     if (response.status === 200) {
-      setData(response.data);
+      setUsers(response.data);
     }
   };
 
@@ -50,7 +50,7 @@ const Home = () => {
           title="INFO - Search work ONLY for Surname"
         />
       </div>
-      <DataTable data={searchUsers(data)} onDeleteUser={onDeleteUser} />
+      <DataTable data={searchUsers(users)} onDeleteUser={onDeleteUser} />
     </>
   );
 };

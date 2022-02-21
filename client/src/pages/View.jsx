@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./View.css";
-import { ViewIpdetails } from "../components/ViewIpDetails";
+import { ViewIpDetails } from "../components/ViewIpDetails";
 
 const View = () => {
   const [user, setUser] = useState(null);
@@ -19,7 +19,16 @@ const View = () => {
 
   useEffect(() => {
     if (userIP) {
-      getIpDetailsOfUser(userIP);
+      const getIpDetailsOfUser = async () => {
+        const response = await axios.get(
+          `http://127.0.0.1:3001/api/userip/${userIP}`
+        );
+        if (response.status === 200) {
+          console.log("ip data:", response.data);
+          setIpDetails(response.data);
+        }
+      };
+      getIpDetailsOfUser(userIP).catch(console.error);
     }
   }, [userIP]);
 
@@ -27,15 +36,6 @@ const View = () => {
     const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
     if (response.status === 200) {
       setUser({ ...response.data });
-    }
-  };
-  const getIpDetailsOfUser = async () => {
-    const response = await axios.get(
-      `http://127.0.0.1:3001/api/userip/${userIP}`
-    );
-    if (response.status === 200) {
-      console.log("ip data:", response.data);
-      setIpDetails(response.data);
     }
   };
 
@@ -60,7 +60,7 @@ const View = () => {
           <br />
           <strong>IP Address: </strong>
           <span>{user?.IP}</span>
-          <ViewIpdetails
+          <ViewIpDetails
             country={ipDetails.country}
             city={ipDetails.city}
             timezone={ipDetails.timezone}

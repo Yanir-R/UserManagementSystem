@@ -1,6 +1,6 @@
 import React from "react";
 
-const ViewIpdetails = ({ country, city, timezone }) => {
+const ViewIpDetails = ({ country, city, timezone }) => {
   return (
     <div>
       <br />
@@ -18,4 +18,4 @@ const ViewIpdetails = ({ country, city, timezone }) => {
   );
 };
 
-export { ViewIpdetails };
+export { ViewIpDetails };
