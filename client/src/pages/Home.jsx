@@ -1,34 +1,27 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { DataTable } from "../components/DataTable";
 
-const Home = () => {
-  const [users, setUsers] = useState([]);
+import { DataTable } from "../components/DataTable";
+import { useUsers } from "../store/UsersStore";
+import { observer } from "mobx-react-lite";
+const Home = observer(() => {
   const [q, setQ] = useState("");
+  const userStore = useUsers();
 
   useEffect(() => {
-    getUsers(setUsers);
-  }, []);
+    userStore.fetchUsers();
+  }, [userStore]);
 
-  const getUsers = async () => {
-    const response = await axios.get("http://127.0.0.1:3001/api/users");
-    if (response.status === 200) {
-      setUsers(response.data);
-    }
-  };
-
-  const onDeleteUser = async (id) => {
-    if (window.confirm("Are you sure you want to delete that user?")) {
-      const response = await axios.delete(
-        `http://127.0.0.1:3001/api/user/${id}`
-      );
-      if (response.status === 200) {
-        toast.success(response.data);
-        getUsers();
-      }
-    }
-  };
+  // const onDeleteUser = async (id) => {
+  //   if (window.confirm("Are you sure you want to delete that user?")) {
+  //     const response = await axios.delete(
+  //       `http://127.0.0.1:3001/api/user/${id}`
+  //     );
+  //     if (response.status === 200) {
+  //       toast.success(response.data);
+  //       getUsers();
+  //     }
+  //   }
+  // };
 
   const searchUsers = (rows) => {
     return rows.filter((rows) => {
@@ -50,9 +43,9 @@ const Home = () => {
           title="INFO - Search work ONLY for Surname"
         />
       </div>
-      <DataTable data={searchUsers(users)} onDeleteUser={onDeleteUser} />
+      <DataTable userStore={searchUsers(userStore.users)} />
     </>
   );
-};
+});
 
 export { Home };

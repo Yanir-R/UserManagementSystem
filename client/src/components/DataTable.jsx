@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./DataTable.css";
-const DataTable = ({ data: users, onDeleteUser }) => {
+import { observer } from "mobx-react-lite";
+
+const DataTable = observer(({ userStore, onDeleteUser }) => {
+
   return (
     <div style={{ marginTop: " 100px" }}>
       <table className="styled-table">
@@ -15,7 +18,7 @@ const DataTable = ({ data: users, onDeleteUser }) => {
             <th style={{ textAlign: "center" }}>Action</th>
           </tr>
         </thead>
-        {users.length === 0 ? (
+        {userStore.length === 0 ? (
           <tbody>
             <tr>
               <td>No Data Found</td>
@@ -23,7 +26,7 @@ const DataTable = ({ data: users, onDeleteUser }) => {
           </tbody>
         ) : (
           <tbody>
-            {users.map((user, row) => (
+            {userStore.map((user, row) => (
               <tr key={row}>
                 <>
                   <td>{row + 1}</td>
@@ -53,6 +56,6 @@ const DataTable = ({ data: users, onDeleteUser }) => {
       </table>
     </div>
   );
-};
+});
 
 export { DataTable };
