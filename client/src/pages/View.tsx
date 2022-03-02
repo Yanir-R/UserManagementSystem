@@ -4,9 +4,9 @@ import axios from "axios";
 import "./View.css";
 import { ViewIpDetails } from "../components/ViewIpDetails";
 
-const View = () => {
+export const View: React.FC = () => {
   const [user, setUser] = useState(null);
-  const [ipDetails, setIpDetails] = useState([]);
+  const [ipDetails, setIpDetails] = useState([]) as any;
 
   const { id } = useParams();
   const userIP = user?.IP;
@@ -28,7 +28,7 @@ const View = () => {
           setIpDetails(response.data);
         }
       };
-      getIpDetailsOfUser(userIP).catch(console.error);
+      getIpDetailsOfUser().catch(console.error);
     }
   }, [userIP]);
 
@@ -76,4 +76,3 @@ const View = () => {
   );
 };
 
-export { View };

@@ -1,6 +1,11 @@
-import React from "react";
 
-const ViewIpDetails = ({ country, city, timezone }) => {
+type ViewDetailsProps = {
+  country: string,
+  city:string,
+  timezone: string
+}
+
+export const ViewIpDetails: React.FC<ViewDetailsProps> = ({ country, city, timezone }) => {
   return (
     <div>
       <br />
@@ -18,4 +23,4 @@ const ViewIpDetails = ({ country, city, timezone }) => {
   );
 };
 
-export { ViewIpDetails };
+

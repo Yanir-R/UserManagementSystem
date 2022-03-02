@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
-const Header = () => {
+export const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const location = useLocation();
 
@@ -48,5 +48,3 @@ const Header = () => {
     </div>
   );
 };
-
-export { Header };

@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
+import { UserState } from "../store/UsersStore";
 
-const initialState = {
+const initialState: UserState = {
   ID: "",
   Name: "",
   IP: "",
   Phone: "",
 };
 
-const AddEdit = () => {
-  const [state, setState] = useState(initialState);
-  const { ID, Name, IP, Phone } = state;
+export const AddEdit: React.FC = () => {
+  const [state, setState] = useState<UserState>(initialState);
 
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!ID || !Name || !IP || !Phone) {
+    if (!state.ID || !state.Name || !state.IP || !state.Phone) {
       toast.error("Please provide values all fields are mandatory");
     } else {
       if (!id) {
@@ -77,7 +77,7 @@ const AddEdit = () => {
           display: "table",
           margin: "auto",
           padding: "15px",
-          maxwidth: "400px",
+          width: "400px",
           alignContent: "center",
         }}
         onSubmit={handleSubmit}
@@ -92,7 +92,7 @@ const AddEdit = () => {
           name="Name"
           placeholder="Enter Your Full Name..."
           onChange={handleInputChange}
-          value={Name}
+          value={state.Name}
           pattern="^[a-zA-Z]{3,}(?: [a-zA-Z]+){0,2}$"
           title="First Name minimum 3 letters required, Last name minimum 2 letters required"
         />
@@ -105,7 +105,7 @@ const AddEdit = () => {
           onChange={handleInputChange}
           minLength="9"
           maxLength="9"
-          value={ID}
+          value={state.ID}
           pattern="[0-9]+"
           title="fill your ID number with 9 numbers, no letters allowed"
         />
@@ -119,7 +119,7 @@ const AddEdit = () => {
           name="IP"
           placeholder="Enter IP Address..."
           onChange={handleInputChange}
-          value={IP}
+          value={state.IP}
           pattern="^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$"
           maxLength="16"
           title="example 1.1.1.1 of IP"
@@ -130,7 +130,7 @@ const AddEdit = () => {
           id="Phone"
           name="Phone"
           placeholder="Enter Phone Number..."
-          value={Phone}
+          value={state.Phone}
           onChange={handleInputChange}
           minLength="10"
           maxLength="14"
@@ -145,5 +145,3 @@ const AddEdit = () => {
     </div>
   );
 };
-
-export { AddEdit };

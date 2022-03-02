@@ -1,11 +1,9 @@
 import React from "react";
 
-const About = () => {
+export const About: React.FC = () => {
   return (
     <div style={{ marginTop: " 150px" }}>
       <h2> This App Build With React & MongoDB & NodeJS</h2>
     </div>
   );
 };
-
-export { About };
