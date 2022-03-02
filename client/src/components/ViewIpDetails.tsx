@@ -1,5 +1,5 @@
 
-type ViewDetailsProps = {
+export type ViewDetailsProps = {
   country: string,
   city:string,
   timezone: string

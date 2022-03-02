@@ -75,4 +75,3 @@ export const View: React.FC = () => {
     </div>
   );
 };
-

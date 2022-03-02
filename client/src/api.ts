@@ -21,11 +21,35 @@ export const api = {
       console.error("Error while deleting user: " + err.message);
     }
   },
-  getSingleUser: async (id: UserState) => {
+  getSingleUser: async (id: string) => {
     try {
-      await axios.get(`${serverApi}/user/${id}`);
+      const response = await axios.get<UserState>(`${serverApi}/user/${id}`);
+      console.log(response.data);
+      return response.data;
     } catch (err) {
       console.error("Error while getting SingleUser: " + err.message);
+    }
+  },
+  addUser: async (newUser: UserState) => {
+    try {
+      const response = await axios.post<UserState>(
+        "http://127.0.0.1:3001/api/users",
+        newUser
+      );
+      return response.data;
+    } catch (err) {
+      console.log("Error while posting new user:", err);
+    }
+  },
+  updateUser: async (updateUser: UserState, id: string) => {
+    try {
+      const response = await axios.put<UserState>(
+        `http://127.0.0.1:3001/api/user/${id}`,
+        updateUser
+      );
+      return response.data;
+    } catch (err) {
+      console.error("Error while updating a user:", err);
     }
   },
 };

@@ -3,7 +3,9 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
-import { UserState } from "../store/UsersStore";
+import { UsersContext, UserState } from "../store/UsersStore";
+import { observer } from "mobx-react-lite";
+import { useContext } from "react";
 
 const initialState: UserState = {
   ID: "",
@@ -12,20 +14,20 @@ const initialState: UserState = {
   Phone: "",
 };
 
-export const AddEdit: React.FC = () => {
+export const AddEdit: React.FC = observer(() => {
   const [state, setState] = useState<UserState>(initialState);
-
+  const usersStore = useContext(UsersContext);
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
     if (id) {
-      getSingleUser(id);
+      getSingleUser(id)
     } else {
       setState(initialState);
     }
-  }, [id]);
+  }, [id, usersStore]);
 
   const getSingleUser = async (id) => {
     const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
@@ -33,33 +35,16 @@ export const AddEdit: React.FC = () => {
       setState({ ...response.data });
     }
   };
-
-  const addUser = async (data) => {
-    const response = await axios.post("http://127.0.0.1:3001/api/users", data);
-    if (response.status === 200) {
-      toast.success(response.data);
-    }
-  };
-
-  const updateUser = async (data, id) => {
-    const response = await axios.put(
-      `http://127.0.0.1:3001/api/user/${id}`,
-      data
-    );
-    if (response.status === 200) {
-      toast.success(response.data);
-    }
-  };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!state.ID || !state.Name || !state.IP || !state.Phone) {
       toast.error("Please provide values all fields are mandatory");
     } else {
       if (!id) {
-        addUser(state);
+        usersStore.addNewUser(state);
       } else {
-        updateUser(state, id);
+        usersStore.updateSpecificUser(state, id);
       }
       setTimeout(() => navigate("/"), 500);
     }
@@ -144,4 +129,4 @@ export const AddEdit: React.FC = () => {
       </form>
     </div>
   );
-};
+});
