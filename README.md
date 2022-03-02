@@ -53,6 +53,7 @@ I created the project to test my abilities with NodeJS & mongoDB.
 <img src="https://img.icons8.com/nolan/64/js.png" alt="javascript"/>
 <img src="https://img.icons8.com/color/48/000000/mongodb.png" alt="mongodb"/>
 <img src="https://img.icons8.com/color/48/000000/nodejs.png" alt="nodejs"/>
+<img src="https://img.icons8.com/color/48/000000/typescript.png" alt="typescript"/>
 </p>
 
 
