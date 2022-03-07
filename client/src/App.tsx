@@ -7,6 +7,7 @@ import { View } from "./pages/View";
 import { About } from "./pages/About";
 import { Header } from "./components/Header";
 import { UsersContext, UsersStore } from "./store/UsersStore";
+import React from "react";
 
 export const App: React.FC = () => {
   const usersStore = new UsersStore();
@@ -18,7 +19,15 @@ export const App: React.FC = () => {
           <ToastContainer position="top-center" />
           <Routes>
             <Route path={"/"} element={<Home />} />
-            <Route path={"/add"} element={<AddEdit />} />
+            {/* added div for Re-render the component for add */}
+            <Route
+              path={"/add"}
+              element={
+                <div>
+                  <AddEdit />
+                </div>
+              }
+            />
             <Route path={"/update/:id"} element={<AddEdit />} />
             <Route path={"/view/:id"} element={<View />} />
             <Route path={"/about"} element={<About />} />

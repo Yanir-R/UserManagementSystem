@@ -1,43 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
 import "./View.css";
 import { ViewIpDetails } from "../components/ViewIpDetails";
+import { UserIpInfo, UsersContext } from "../store/UsersStore";
+import { observer } from "mobx-react-lite";
 
-export const View: React.FC = () => {
-  const [user, setUser] = useState(null);
-  const [ipDetails, setIpDetails] = useState([]) as any;
-
+export const View: React.FC = observer(() => {
+  const usersStore = useContext(UsersContext);
+  const [ipDetails, setIpDetails] = useState<UserIpInfo>();
+  const user = usersStore.user;
   const { id } = useParams();
   const userIP = user?.IP;
 
   useEffect(() => {
     if (id) {
-      getSingleUser(id);
+      usersStore.getSingle(id);
     }
   }, [id]);
 
   useEffect(() => {
     if (userIP) {
-      const getIpDetailsOfUser = async () => {
-        const response = await axios.get(
-          `http://127.0.0.1:3001/api/userip/${userIP}`
-        );
-        if (response.status === 200) {
-          console.log("ip data:", response.data);
-          setIpDetails(response.data);
-        }
-      };
-      getIpDetailsOfUser().catch(console.error);
+      usersStore.getSingleIpInformation(userIP).then(setIpDetails);
     }
   }, [userIP]);
-
-  const getSingleUser = async (id) => {
-    const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
-    if (response.status === 200) {
-      setUser({ ...response.data });
-    }
-  };
 
   return (
     <div style={{ marginTop: "150px" }}>
@@ -61,9 +46,9 @@ export const View: React.FC = () => {
           <strong>IP Address: </strong>
           <span>{user?.IP}</span>
           <ViewIpDetails
-            country={ipDetails.country}
-            city={ipDetails.city}
-            timezone={ipDetails.timezone}
+            country={ipDetails?.country}
+            city={ipDetails?.city}
+            timezone={ipDetails?.timezone}
           />
           <br />
           <br />
@@ -74,5 +59,4 @@ export const View: React.FC = () => {
       </div>
     </div>
   );
-};
-
+});
