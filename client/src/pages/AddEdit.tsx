@@ -1,42 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
 import { UsersContext, UserState } from "../store/UsersStore";
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 
-const initialState: UserState = {
-  ID: "",
-  Name: "",
-  IP: "",
-  Phone: "",
-};
-
 export const AddEdit: React.FC = observer(() => {
-  const [state, setState] = useState<UserState>(initialState);
   const usersStore = useContext(UsersContext);
+  const [state, setState] = useState<UserState>(usersStore.state);
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
     if (id) {
-      getSingleUser(id)
-    } else {
-      setState(initialState);
+      usersStore.getSingle(id).then(setState);
     }
-  }, [id, usersStore]);
+  }, [id]);
 
-  const getSingleUser = async (id) => {
-    const response = await axios.get(`http://127.0.0.1:3001/api/user/${id}`);
-    if (response.status === 200) {
-      setState({ ...response.data });
-    }
-  };
-  
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!state.ID || !state.Name || !state.IP || !state.Phone) {
       toast.error("Please provide values all fields are mandatory");
@@ -50,8 +33,8 @@ export const AddEdit: React.FC = observer(() => {
     }
   };
 
-  const handleInputChange = (e) => {
-    let { name, value } = e.target;
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = e.target as HTMLInputElement;
     setState({ ...state, [name]: value });
   };
 
@@ -65,7 +48,7 @@ export const AddEdit: React.FC = observer(() => {
           width: "400px",
           alignContent: "center",
         }}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit as React.FormEventHandler<HTMLFormElement>}
       >
         <abbr title="Fill Your First & Last Name" aria-label="required">
           *
