@@ -5,7 +5,6 @@ import "./Header.css";
 export const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const location = useLocation();
-
   useEffect(() => {
     if (location.pathname === "/") {
       setActiveTab("Home");
@@ -18,7 +17,9 @@ export const Header: React.FC = () => {
 
   return (
     <div className="header">
-      <p className="logo">Management System</p>
+      <Link to={"/"}>
+        <p className="logo">Management System</p>
+      </Link>
       <div className="header-right">
         <Link to={"/"}>
           <p
