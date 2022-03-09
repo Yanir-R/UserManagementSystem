@@ -8,7 +8,7 @@ import { useContext } from "react";
 
 export const AddEdit: React.FC = observer(() => {
   const usersStore = useContext(UsersContext);
-  const [state, setState] = useState<UserState>(usersStore.state);
+  const [state, setState] = useState<UserState>(usersStore.initialState);
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -19,7 +19,8 @@ export const AddEdit: React.FC = observer(() => {
     }
   }, [id]);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  //  used when unsure about event type ->  React.SyntheticEvent
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!state.ID || !state.Name || !state.IP || !state.Phone) {
       toast.error("Please provide values all fields are mandatory");
@@ -48,7 +49,7 @@ export const AddEdit: React.FC = observer(() => {
           width: "400px",
           alignContent: "center",
         }}
-        onSubmit={handleSubmit as React.FormEventHandler<HTMLFormElement>}
+        onSubmit={handleSubmit}
       >
         <abbr title="Fill Your First & Last Name" aria-label="required">
           *

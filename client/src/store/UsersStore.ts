@@ -19,8 +19,9 @@ export class UsersStore {
   user: UserState;
   userIpDetails: UserIpInfo;
   statusState: string = "";
-  // query: string = "";
-  state = {
+  query: string = "";
+  
+  initialState = {
     ID: "",
     Name: "",
     IP: "",
@@ -32,12 +33,9 @@ export class UsersStore {
     this.getAllUsers();
   }
 
-  // setQuery(query: string) {
-  //   this.query = query;
-  // }
-  // setState(state: UserState) {
-  //   this.state = state;
-  // }
+  setQuery(query: string) {
+    this.query = query;
+  }
 
   getAllUsers = async () => {
     this.statusState = "pending";
@@ -84,13 +82,13 @@ export class UsersStore {
       })
     );
   };
-  // searchUsers = (rows) => {
-  //   return rows.filter((rows) => {
-  //     let splitted = rows.Name.toLowerCase().split(" ");
-  //     let searchable = splitted.length > 1 ? splitted[1] : "";
-  //     return searchable.indexOf(this.query.toString().toLowerCase()) > -1;
-  //   });
-  // };
+  searchUsers = (rows: Array<UserState>) => {
+    return rows.filter((rows) => {
+      let splitted = rows.Name.toLowerCase().split(" ");
+      let searchable = splitted.length > 1 ? splitted[1] : "";
+      return searchable.indexOf(this.query.toString().toLowerCase()) > -1;
+    });
+  };
 }
 
 export const UsersContext = createContext(new UsersStore());
